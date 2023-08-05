@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        
+        <title>To Do List</title>
+    </h:head>
+    <h:body>
+        <h:outputStylesheet library="css" name="table-style.css"  />
+        <h:form>
+        <table>
+            <tr>
+                <td>
+                    Task Name:
+                </td>
+                <td>
+                    <h:inputText value="#{taskBean.title}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Task Priority:
+                </td>
+                <td>
+                    <h:selectOneMenu value="#{taskBean.priority}">
+                            <f:selectItem itemValue="1" itemLabel="1" />
+                            <f:selectItem itemValue="2" itemLabel="2" />
+                            <f:selectItem itemValue="3" itemLabel="3" />
+                    </h:selectOneMenu>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Task Optional Notes:
+                </td>
+                <td>
+                    <h:inputTextarea value="#{taskBean.optionalNotes}"/>
+                </td>
+
+            </tr>
+            
+            <tr>
+                <td>
+		  Due Date : 
+                </td>
+                <td>
+                    <h:inputText id="date" value="#{taskBean.dueDate}" 
+			size="20" required="true"
+			label="Receipt Date" >
+ 
+			<f:convertDateTime pattern="d-M-yyyy" />
+		  </h:inputText>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    Assigned User:
+                </td>
+                <td>
+                    <h:inputText value="#{taskBean.assignedUser}"/>
+                </td>
+
+            </tr>
+            
+            <tr>
+                <td>
+                    Requesting User:
+                </td>
+                <td>
+                    <h:inputText value="#{taskBean.requestingUser}"/>
+                </td>
+
+            </tr>
+            
+            <tr>
+                <td>
+                    Completion Flag:
+                </td>
+                <td>
+                    <h:selectBooleanCheckbox value="#{taskBean.completionFlag}"/>
+                </td>
+
+            </tr>
+            
+            <tr>
+                <td> <h:commandButton action="#{taskBean.addTask()}" value="Add Task">
+                        <f:actionListener binding="#{RemoteTaskBean.addTask()}"/>
+                    
+                    </h:commandButton> 
+                </td>
+            </tr>
+        
+        </table>
+        </h:form>   
+        
+        <h:form>
+            <h:dataTable value="#{taskBean.tasks}" var="task"
+                styleClass="order-table"
+    		headerClass="order-table-header"
+    		rowClasses="order-table-odd-row,order-table-even-row">
+            <h:column>
+                <f:facet name="header">Priority</f:facet>
+                #{task.priority}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Title</f:facet>
+                #{task.title}
+            </h:column>
+                        <h:column>
+                <f:facet name="header">Due Date</f:facet>
+                #{task.dueDate}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Assigned User</f:facet>
+                #{task.assignedUser}
+            </h:column>                
+            <h:column>
+                <f:facet name="header">Requesting User</f:facet>
+                #{task.requestingUser}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Completed?</f:facet>
+                #{task.completionFlag}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Controls</f:facet>
+                <h:commandButton action="#{taskBean.deleteTask(task)}" value="delete" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Controls</f:facet>
+                <h:commandButton action="#{taskBean.editTask(task)}" value="update" />
+            </h:column>
+        </h:dataTable>
+        </h:form>
+    </h:body>
+</html>

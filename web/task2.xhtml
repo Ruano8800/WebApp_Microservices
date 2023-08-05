@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        
+        <title>To Do List</title>
+    </h:head>
+    <h:body>
+        <h:outputStylesheet library="css" name="table-style.css"  />
+        <h:form>
+        <table>
+            <tr>
+                <td>
+                    Description:
+                </td>
+                <td>
+                    <h:inputText value="#{remoteTaskBean.description}"/>
+                </td>
+            </tr>
+            
+            
+            <tr>
+                <td>
+		  Due Date : 
+                </td>
+                <td>
+                    <h:inputText id="date" value="#{remoteTaskBean.dueDate}" 
+			size="20" required="true"
+			label="Receipt Date" >
+ 
+			<f:convertDateTime pattern="d-M-yyyy" />
+		  </h:inputText>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    Assigned User:
+                </td>
+                <td>
+                    <h:inputText value="#{remoteTaskBean.allocated}"/>
+                </td>
+
+            </tr>
+            
+            <tr>
+                <td>
+                    Requesting User:
+                </td>
+                <td>
+                    <h:inputText value="#{remoteTaskBean.proposer}"/>
+                </td>
+
+            </tr>
+            
+            <tr>
+                <td>
+                    Completion Flag:
+                </td>
+                <td>
+                    <h:selectBooleanCheckbox value="#{remoteTaskBean.completed}"/>
+                </td>
+
+            </tr>
+            
+            <tr>
+                <td> <h:commandButton action="#{remoteTaskBean.addTask()}" value="Add Task">
+                    
+                    </h:commandButton> 
+                </td>
+            </tr>
+        
+        </table>
+        </h:form>   
+        
+        <h:form>
+            <h:dataTable value="#{remoteTaskBean.tasks}" var="task"
+                styleClass="order-table"
+    		headerClass="order-table-header"
+    		rowClasses="order-table-odd-row,order-table-even-row">
+            <h:column>
+                <f:facet name="header">Description</f:facet>
+                #{task.description}
+            </h:column>
+            
+                        
+            <h:column>
+                <f:facet name="header">Due Date</f:facet>
+                #{task.dueDate}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Assigned User</f:facet>
+                #{task.allocated}
+            </h:column>                
+            <h:column>
+                <f:facet name="header">Requesting User</f:facet>
+                #{task.proposer}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Completed?</f:facet>
+                #{task.completed}
+            </h:column>
+            
+        </h:dataTable>
+        </h:form>
+    </h:body>
+</html>
