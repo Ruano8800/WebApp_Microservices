@@ -22,7 +22,7 @@ public class ListUserBean implements Serializable {
 
     @EJB ListUserControllerLocal users;
     @EJB TaskBrokerBeanRemote users2;
-    /** Creates a new instance of VisitorBean */
+   
     public ListUserBean(){
         
     }
