@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package userBean;
 
 import java.io.Serializable;
@@ -17,10 +13,7 @@ import java.util.ArrayList;
 import uk.ac.susx.inf.ianw.webApps.taskBroker.ejb.TaskBrokerBeanRemote;
 import uk.ac.susx.inf.ianw.webApps.taskBroker.ejb.TaskBrokerException;
 import uk.ac.susx.inf.ianw.webApps.taskBroker.entity.Username;
-/**
- *
- * @author muratmenevse
- */
+
 @Named(value="listUser")
 @SessionScoped
 public class ListUserBean implements Serializable {
@@ -121,3 +114,4 @@ public class ListUserBean implements Serializable {
         
     }
 }
+@sessionEnd
